@@ -1,0 +1,44 @@
+# Ruff configuration for taskmanager
+# This is the Python equivalent of ESLint + Prettier combined
+
+# Target Python version
+target-version = "py312"
+
+# Max line length (like Prettier's printWidth: 80)
+line-length = 88
+
+# Files to exclude from linting/formatting
+exclude = [
+    ".git",
+    "__pycache__",
+    "migrations",
+    "venv",
+    ".venv",
+]
+
+[lint]
+# Rules to enable (like ESLint rules)
+select = [
+    "E",    # pycodestyle errors (style issues)
+    "W",    # pycodestyle warnings
+    "F",    # pyflakes (unused imports, variables, etc.)
+    "I",    # isort (import sorting)
+    "B",    # flake8-bugbear (common bugs)
+    "SIM",  # flake8-simplify (code simplification)
+]
+
+# Rules to ignore
+ignore = [
+    "E501",  # line too long (handled by formatter)
+]
+
+[lint.isort]
+# Keep Django imports organized
+known-third-party = ["rest_framework"]
+
+[format]
+# Use double quotes (Python convention, like Prettier's singleQuote: false)
+quote-style = "double"
+
+# Use spaces for indentation
+indent-style = "space"
