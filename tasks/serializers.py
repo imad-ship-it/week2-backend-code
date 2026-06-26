@@ -6,10 +6,13 @@ from .models import Task
 
 
 class TaskSerializer(serializers.ModelSerializer):
+    user = serializers.PrimaryKeyRelatedField(read_only=True)  # ← NEW
+
     class Meta:
         model = Task
         fields = [
             "id",
+            "user",  # ← NEW
             "title",
             "description",
             "due_date",
@@ -18,7 +21,7 @@ class TaskSerializer(serializers.ModelSerializer):
             "created_at",
             "updated_at",
         ]
-        read_only_fields = ["id", "created_at", "updated_at"]
+        read_only_fields = ["id", "user", "created_at", "updated_at"]  # ← UPDATED
 
     def validate_title(self, value):
         if len(value.strip()) < 3:
@@ -33,6 +36,7 @@ class TaskSerializer(serializers.ModelSerializer):
         return value
 
     def validate(self, data):
-        if "title" not in data or not data["title"]:
+        # Only enforce title requirement on create, not on partial update (PATCH)
+        if not self.instance and ("title" not in data or not data["title"]):
             raise serializers.ValidationError({"title": "Title is required"})
         return data
