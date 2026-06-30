@@ -1,4 +1,4 @@
-# Authentication endpoints tests
+# Verified (Week 3): Part of a 30-test suite covering authentication, CRUD operations, scoping, and validation.
 import pytest
 
 # ──────────────────────────────────────────────

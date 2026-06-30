@@ -1,4 +1,5 @@
-# Tasks endpoint tests
+# Verified (Week 3): Part of a 30-test suite covering authentication, CRUD operations, scoping, and validation.
+# TODO (Week 3): A full login→create→read→update→delete sequential integration test is still missing.
 import pytest
 
 from tasks.models import Task
